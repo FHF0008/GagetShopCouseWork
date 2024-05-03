@@ -9,122 +9,160 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+// Define a class named GadgetShop
 public class GadgetShop {
-    private ArrayList<Gadget> gadgets;
-    private JFrame frame;
-    private JTextArea displayArea;
+    // Declare instance variables
+    private ArrayList<Gadget> gadgets; // ArrayList to store Gadget objects
+    private JFrame frame; // GUI frame
+    private JTextArea displayArea; // Text area for displaying information
+    // Text fields for inputting gadget details
     private JTextField modelField, priceField, weightField, sizeField, creditField, memoryField, phoneNumberField, durationField, downloadSizeField, displayNumberField;
+    // Buttons for various actions
     private JButton addMobileButton, addMP3Button, clearButton, displayAllButton, makeCallButton, downloadMusicButton;
 
-    public GadgetShop() {
-        gadgets = new ArrayList<>();
-        frame = new JFrame("Gadget Shop");
-        displayArea = new JTextArea(20, 30);
-        JScrollPane scrollPane = new JScrollPane(displayArea);
-        modelField = new JTextField(15);
-        priceField = new JTextField(10);
-        weightField = new JTextField(10);
-        sizeField = new JTextField(15);
-        creditField = new JTextField(10);
-        memoryField = new JTextField(10);
-        phoneNumberField = new JTextField(15);
-        durationField = new JTextField(10);
-        downloadSizeField = new JTextField(10);
-        displayNumberField = new JTextField(10);
-        addMobileButton = new JButton("Add Mobile");
-        addMP3Button = new JButton("Add MP3");
-        clearButton = new JButton("Clear");
-        displayAllButton = new JButton("Display All");
-        makeCallButton = new JButton("Make A Call");
-        downloadMusicButton = new JButton("Download Music");
 
-        frame.setLayout(new BorderLayout());
-        JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.anchor = GridBagConstraints.WEST;
-        gbc.insets = new Insets(5, 5, 5, 5);
+    // Constructor for the GadgetShop class
+public GadgetShop() {
+    // Initialize ArrayList to store gadgets
+    gadgets = new ArrayList<>();
+    // Create a new JFrame for the gadget shop interface
+    frame = new JFrame("Gadget Shop");
+    // Create a JTextArea for displaying information with a size of 20 rows and 30 columns
+    displayArea = new JTextArea(20, 30);
+    // Add a JScrollPane to the displayArea for scrolling if necessary
+    JScrollPane scrollPane = new JScrollPane(displayArea);;
+        // Initialize text fields for inputting gadget details
+    modelField = new JTextField(15);
+    priceField = new JTextField(10);
+    weightField = new JTextField(10);
+    sizeField = new JTextField(15);
+    creditField = new JTextField(10);
+    memoryField = new JTextField(10);
+    phoneNumberField = new JTextField(15);
+    durationField = new JTextField(10);
+    downloadSizeField = new JTextField(10);
+    displayNumberField = new JTextField(10);
+         // Initialize buttons for various actions
+    addMobileButton = new JButton("Add Mobile");
+    addMP3Button = new JButton("Add MP3");
+    clearButton = new JButton("Clear");
+    displayAllButton = new JButton("Display All");
+    makeCallButton = new JButton("Make A Call");
+    downloadMusicButton = new JButton("Download Music");
 
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        inputPanel.add(new JLabel("Model:"), gbc);
-        gbc.gridx = 1;
-        inputPanel.add(modelField, gbc);
+         // Set layout of the frame to BorderLayout
+    frame.setLayout(new BorderLayout());
+    // Create a panel for input components
+    JPanel inputPanel = new JPanel();
+    // Set layout of the input panel to GridBagLayout
+    inputPanel.setLayout(new GridBagLayout());
+    // Create GridBagConstraints for controlling the layout of components in the input panel
+    GridBagConstraints gbc = new GridBagConstraints();
+    gbc.anchor = GridBagConstraints.WEST; // Align components to the left
+    gbc.insets = new Insets(5, 5, 5, 5); // Set insets for spacing
 
-        gbc.gridx = 0;
-        gbc.gridy++;
-        inputPanel.add(new JLabel("Price (in pounds):"), gbc);
-        gbc.gridx = 1;
-        inputPanel.add(priceField, gbc);
+        // Add labels and text fields for model, price, weight, size, credit, memory, phone number, duration, download size, and display number
+    gbc.gridx = 0;
+    gbc.gridy = 0;
+    inputPanel.add(new JLabel("Model:"), gbc);
+    gbc.gridx = 1;
+    inputPanel.add(modelField, gbc);
 
-        gbc.gridx = 0;
-        gbc.gridy++;
-        inputPanel.add(new JLabel("Weight (in grams):"), gbc);
-        gbc.gridx = 1;
-        inputPanel.add(weightField, gbc);
+        // Add labels and text fields for other gadget details similarly
+    // (repeating the same pattern for each detail)
 
-        gbc.gridx = 0;
-        gbc.gridy++;
-        inputPanel.add(new JLabel("Size:"), gbc);
-        gbc.gridx = 1;
-        inputPanel.add(sizeField, gbc);
+    // Add buttons for adding gadgets, clearing fields, displaying all gadgets, making calls, and downloading music
+    gbc.gridx = 0;
+    gbc.gridy++;
+    inputPanel.add(addMobileButton, gbc);
+    gbc.gridx = 1;
+    inputPanel.add(addMP3Button, gbc);
 
-        gbc.gridx = 0;
-        gbc.gridy++;
-        inputPanel.add(new JLabel("Initial Credit (for mobile):"), gbc);
-        gbc.gridx = 1;
-        inputPanel.add(creditField, gbc);
+        // Add label and text field for entering weight (in grams)
+gbc.gridx = 0;
+gbc.gridy++;
+inputPanel.add(new JLabel("Weight (in grams):"), gbc);
+gbc.gridx = 1;
+inputPanel.add(weightField, gbc);
 
-        gbc.gridx = 0;
-        gbc.gridy++;
-        inputPanel.add(new JLabel("Initial Available Memory (for MP3):"), gbc);
-        gbc.gridx = 1;
-        inputPanel.add(memoryField, gbc);
+// Add label and text field for entering size
+gbc.gridx = 0;
+gbc.gridy++;
+inputPanel.add(new JLabel("Size:"), gbc);
+gbc.gridx = 1;
+inputPanel.add(sizeField, gbc);
 
-        gbc.gridx = 0;
-        gbc.gridy++;
-        inputPanel.add(new JLabel("Phone Number:"), gbc);
-        gbc.gridx = 1;
-        inputPanel.add(phoneNumberField, gbc);
+// Add label and text field for entering initial credit (for mobile)
+gbc.gridx = 0;
+gbc.gridy++;
+inputPanel.add(new JLabel("Initial Credit (for mobile):"), gbc);
+gbc.gridx = 1;
+inputPanel.add(creditField, gbc);
 
-        gbc.gridx = 0;
-        gbc.gridy++;
-        inputPanel.add(new JLabel("Duration (in minutes):"), gbc);
-        gbc.gridx = 1;
-        inputPanel.add(durationField, gbc);
 
-        gbc.gridx = 0;
-        gbc.gridy++;
-        inputPanel.add(new JLabel("Download Size (in MB):"), gbc);
-        gbc.gridx = 1;
-        inputPanel.add(downloadSizeField, gbc);
+        // Add label and text field for entering initial available memory (for MP3)
+gbc.gridx = 0;
+gbc.gridy++;
+inputPanel.add(new JLabel("Initial Available Memory (for MP3):"), gbc);
+gbc.gridx = 1;
+inputPanel.add(memoryField, gbc);
 
-        gbc.gridx = 0;
-        gbc.gridy++;
-        inputPanel.add(new JLabel("Display Number:"), gbc);
-        gbc.gridx = 1;
-        inputPanel.add(displayNumberField, gbc);
+// Add label and text field for entering phone number
+gbc.gridx = 0;
+gbc.gridy++;
+inputPanel.add(new JLabel("Phone Number:"), gbc);
+gbc.gridx = 1;
+inputPanel.add(phoneNumberField, gbc);
 
-        gbc.gridx = 0;
-        gbc.gridy++;
-        inputPanel.add(addMobileButton, gbc);
-        gbc.gridx = 1;
-        inputPanel.add(addMP3Button, gbc);
+// Add label and text field for entering duration (in minutes)
+gbc.gridx = 0;
+gbc.gridy++;
+inputPanel.add(new JLabel("Duration (in minutes):"), gbc);
+gbc.gridx = 1;
+inputPanel.add(durationField, gbc);
 
-        gbc.gridx = 0;
-        gbc.gridy++;
-        inputPanel.add(clearButton, gbc);
-        gbc.gridx = 1;
-        inputPanel.add(displayAllButton, gbc);
 
-        gbc.gridx = 0;
-        gbc.gridy++;
-        inputPanel.add(makeCallButton, gbc);
-        gbc.gridx = 1;
-        inputPanel.add(downloadMusicButton, gbc);
+        // Add label and text field for entering download size (in MB)
+gbc.gridx = 0;
+gbc.gridy++;
+inputPanel.add(new JLabel("Download Size (in MB):"), gbc);
+gbc.gridx = 1;
+inputPanel.add(downloadSizeField, gbc);
 
-        frame.add(inputPanel, BorderLayout.NORTH);
-        frame.add(scrollPane, BorderLayout.CENTER);
+// Add label and text field for entering display number
+gbc.gridx = 0;
+gbc.gridy++;
+inputPanel.add(new JLabel("Display Number:"), gbc);
+gbc.gridx = 1;
+inputPanel.add(displayNumberField, gbc);
+
+// Add buttons for adding mobile gadgets and MP3 gadgets
+gbc.gridx = 0;
+gbc.gridy++;
+inputPanel.add(addMobileButton, gbc);
+gbc.gridx = 1;
+inputPanel.add(addMP3Button, gbc);
+
+
+        // Add buttons for clearing fields and displaying all gadgets
+gbc.gridx = 0;
+gbc.gridy++;
+inputPanel.add(clearButton, gbc);
+gbc.gridx = 1;
+inputPanel.add(displayAllButton, gbc);
+
+// Add buttons for making calls and downloading music
+gbc.gridx = 0;
+gbc.gridy++;
+inputPanel.add(makeCallButton, gbc);
+gbc.gridx = 1;
+inputPanel.add(downloadMusicButton, gbc);
+
+// Add the input panel to the frame's NORTH region
+frame.add(inputPanel, BorderLayout.NORTH);
+// Add the scroll pane containing the display area to the frame's CENTER region
+frame.add(scrollPane, BorderLayout.CENTER);
+
 
         addMobileButton.addActionListener(new ActionListener() {
     public void actionPerformed(ActionEvent e) {
