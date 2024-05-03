@@ -187,12 +187,18 @@ public class GadgetShop {
                 clearFields();
             }
         });
+        
+        // Add an ActionListener to the displayAllButton
+      displayAllButton.addActionListener(new ActionListener() {
+     // Define the actionPerformed method
+     public void actionPerformed(ActionEvent e) {
+        // Call the displayAllGadgets method when the button is clicked
+        displayAllGadgets();
+     }
+    });
 
-        displayAllButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                displayAllGadgets();
-            }
-        });
+
+    
 
         makeCallButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
